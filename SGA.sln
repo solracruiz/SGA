@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGA", "SGA.csproj", "{8780E419-45FD-4BD6-B130-D9F9181423CC}"
+EndProject
+Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "SIGAL_SETUP", "..\SIGAL_SETUP\SIGAL_SETUP.aiproj", "{5AFC709D-5BDF-4546-AB99-4BCE87AA8A87}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		All|Any CPU = All|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8780E419-45FD-4BD6-B130-D9F9181423CC}.All|Any CPU.ActiveCfg = Release|Any CPU
+		{8780E419-45FD-4BD6-B130-D9F9181423CC}.All|Any CPU.Build.0 = Release|Any CPU
+		{8780E419-45FD-4BD6-B130-D9F9181423CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8780E419-45FD-4BD6-B130-D9F9181423CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8780E419-45FD-4BD6-B130-D9F9181423CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8780E419-45FD-4BD6-B130-D9F9181423CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AFC709D-5BDF-4546-AB99-4BCE87AA8A87}.All|Any CPU.ActiveCfg = DefaultBuild
+		{5AFC709D-5BDF-4546-AB99-4BCE87AA8A87}.All|Any CPU.Build.0 = DefaultBuild
+		{5AFC709D-5BDF-4546-AB99-4BCE87AA8A87}.Debug|Any CPU.ActiveCfg = DefaultBuild
+		{5AFC709D-5BDF-4546-AB99-4BCE87AA8A87}.Debug|Any CPU.Build.0 = DefaultBuild
+		{5AFC709D-5BDF-4546-AB99-4BCE87AA8A87}.Release|Any CPU.ActiveCfg = DefaultBuild
+		{5AFC709D-5BDF-4546-AB99-4BCE87AA8A87}.Release|Any CPU.Build.0 = DefaultBuild
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7B36E282-39A8-43B7-9F20-0C5784C08729}
+	EndGlobalSection
+EndGlobal

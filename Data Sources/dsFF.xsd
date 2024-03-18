@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsFF" targetNamespace="http://tempuri.org/dsFF.xsd" xmlns:mstns="http://tempuri.org/dsFF.xsd" xmlns="http://tempuri.org/dsFF.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsFF" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dsFF" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsFF">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dsFF" msprop:Generator_RowEvHandlerName="dsFFRowChangeEventHandler" msprop:Generator_RowDeletedName="dsFFRowDeleted" msprop:Generator_RowDeletingName="dsFFRowDeleting" msprop:Generator_RowEvArgName="dsFFRowChangeEvent" msprop:Generator_TablePropName="_dsFF" msprop:Generator_RowChangedName="dsFFRowChanged" msprop:Generator_UserTableName="dsFF" msprop:Generator_RowChangingName="dsFFRowChanging" msprop:Generator_RowClassName="dsFFRow" msprop:Generator_TableClassName="dsFFDataTable" msprop:Generator_TableVarName="tabledsFF">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnVarNameInTable="columnid" type="xs:string" minOccurs="0" />
+              <xs:element name="ultimo_nivel" msprop:Generator_ColumnPropNameInTable="ultimo_nivelColumn" msprop:Generator_ColumnPropNameInRow="ultimo_nivel" msprop:Generator_UserColumnName="ultimo_nivel" msprop:Generator_ColumnVarNameInTable="columnultimo_nivel" type="xs:string" minOccurs="0" />
+              <xs:element name="descripcion" msprop:Generator_ColumnPropNameInTable="descripcionColumn" msprop:Generator_ColumnPropNameInRow="descripcion" msprop:Generator_UserColumnName="descripcion" msprop:Generator_ColumnVarNameInTable="columndescripcion" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

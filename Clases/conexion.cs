@@ -1,0 +1,275 @@
+﻿using Microsoft.Reporting.Map.WebForms.BingMaps;
+using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Management.Instrumentation;
+using System.Security.Policy;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using SGA.Clases;
+
+namespace SGA
+{
+    internal class conexion
+    {
+        MySqlConnection MysqlConexion = new MySqlConnection();
+        #pragma warning disable CS0414 
+        // El campo 'conexion.tr' está asignado pero su valor nunca se usa
+        
+        MySqlTransaction tr = null;
+        #pragma warning restore CS0414 
+        // El campo 'conexion.tr' está asignado pero su valor nunca se usa
+
+        MySqlDataAdapter Adapter = new MySqlDataAdapter();
+        MySqlDataAdapter Adapter2 = new MySqlDataAdapter();
+        MySqlCommand Command = new MySqlCommand();
+        MySqlCommand Command2 = new MySqlCommand();
+
+        DataSet Data = new DataSet();
+        DataSet Data2 = new DataSet();
+
+        DataTable Table = new DataTable();
+        DataTable Table2 = new DataTable();
+
+        MySqlDataReader Reader, Reader2;
+        public String servidor = "";
+        String nombreBD = "";
+        String usuario = "";
+        String password = "";
+
+        public void Nuevo()
+        {            
+            servidor = "bpmservicio.com.mx";
+            usuario = "bpmservi";
+            password = "oi@RvUdF&csy";
+            nombreBD = "bpmservi_sigal";
+        }
+        public void inicio()
+        {
+            tr = this.MysqlConexion.BeginTransaction();
+        }
+        public void exito()
+        { 
+            tr.Commit();
+          
+        }
+
+        public void fallo()
+            {
+                tr.Rollback();
+            }
+
+        public MySqlConnection AbrirBD()
+            {
+                try
+                {
+                    Nuevo();
+                    MysqlConexion = new MySqlConnection("server=" + servidor + "; database=" + nombreBD +
+                        "; Uid=" + usuario + ";pwd =" + password + ";SSLMode=None");
+                    MysqlConexion.Open();
+                    return MysqlConexion;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Fallo en la conexion: " + ex.Message,
+                    Application.ProductName, MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+                    return null;
+                }
+            }
+            public void cerrarBd()
+            {
+                try
+                {
+                    MysqlConexion.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Fallo al desconectar con la BD:" +
+                    ex.Message, Application.ProductName,
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                }
+            }
+            public Boolean Executa(string consulta)
+            {
+                try
+                {
+                    //PropertyConexion.Open(); //'Se abre la base de datos
+                    //MySqlCommand PropertyCommand = new MySqlCommand();// 'Se crea instancia la propiedad MysqlCommand del objeto         
+
+                    Command.Connection = MysqlConexion; //'indica conexion
+                    Command.CommandText = consulta; //'consulta sql
+                    Command.ExecuteNonQuery(); //'Ejecuta el query
+                                               //MysqlConexion.Close();// 'Cierra Base de datos
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocurrio el siguiente problema: " +
+                    ex.Message);
+                    return false;
+                }
+            }
+            public DataTable GetTable(string consulta)
+            {
+                try
+                {
+                    Command2.Connection = MysqlConexion;
+                    Command2.CommandText = consulta;
+                    Data2.Clear();
+                    Adapter2 = new MySqlDataAdapter(Command2); //'se crea instancia del adaptador del objeto 
+                                                               //'se crea instancia             del dataset del objeto
+                    Adapter2.Fill(Data2); //'se llena el  adaptador del objeto
+                    Table2.Clear();
+                    if (Data2.Tables[0].Rows.Count != 0)
+                    { //'valida registros 
+                        Reader2 = Command2.ExecuteReader(); // 'se  inicializa el MysqlDataReader del objeto
+                        Table2.Load(Reader2);//
+                                             // MysqlConexion.Close();
+                                             //  'cierra base de datos 
+                        return Table2;//
+                    }// 'Retorna DataTable del Objeto 
+                    else
+                    {
+                        return null; // 'Retorna Nulo 
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocurrio el siguiente problema: " +
+                    ex.Message);
+                    return null;
+                }
+
+
+            }
+            public DataTable GetTable2(string consulta)
+            {
+                try
+                {
+                    Command.Connection = MysqlConexion;
+                    Command.CommandText = consulta;
+                    Data.Clear();
+                    Adapter = new MySqlDataAdapter(Command); //'se crea  instancia del adaptador del  objeto 
+                                                             //'se crea instancia     del dataset del objeto
+                    Adapter.Fill(Data); //'se llena el adaptador del objeto
+                    Table.Clear();
+                    if (Data.Tables[0].Rows.Count != 0)
+                    { //'valida registros 
+                        Reader = Command.ExecuteReader(); // 'se inicializa el MysqlDataReader del objeto
+                        Table.Load(Reader);//
+                                           // MysqlConexion.Close();
+                                           // cierra base de datos 
+                        return Table;//
+                    }// 'Retorna DataTable del Objeto 
+                    else
+                    {
+                        return null; // 'Retorna Nulo 
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocurrio el siguiente problema: " +
+                    ex.Message);
+                    return null;
+                }
+            }
+            public MySqlDataReader GetData(string consulta)
+            {
+                try
+                {
+                    //MysqlConexion.AbrirBD();
+                    Command.Connection = MysqlConexion;
+                    Command.CommandText = consulta;
+                    //Adapter = new MySqlDataAdapter(Command); //'se crea instancia del adaptador del objeto 
+                    //'se crea instancia  del dataset del objeto
+                    return Command.ExecuteReader(); // 'se inicializa el MysqlDataReader del objeto
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocurrio el siguiente problema: " +
+                    ex.Message);
+                    return null;
+                }
+            } 
+        
+        public String PropertyServidor
+        {
+            get { return servidor; }
+            set { servidor = value; }
+        }
+        public String PropertyNombreBD
+        {
+            get { return nombreBD; }
+            set { nombreBD = value; }
+        }
+        public String PropertyUsuario
+        {
+            get { return usuario; }
+            set { usuario = value; }
+        }
+        public String PropertyPassword
+        {
+            get { return password; }
+            set { password = value; }
+        }
+        public MySqlConnection PropertyConexion
+        {
+            get { return MysqlConexion; }
+            set { MysqlConexion = value; }
+        }
+        public MySqlDataAdapter PropertyAdaptador
+        {
+            get { return Adapter; }
+            set { Adapter = value; }
+        }
+        public DataSet PropertyDataSet
+        {
+            get
+            {
+                return Data;
+            }
+            set
+            {
+                Data = value;
+            }
+        }
+        public MySqlCommand PropertyCommand
+        {
+            get
+            {
+                return Command;
+            }
+            set
+            {
+                Command = value;
+            }
+        }
+        public MySqlDataReader PropertyReader
+        {
+            get
+            {
+                return Reader;
+            }
+            set
+            {
+                Reader = value;
+            }
+        }
+        public DataTable PropertyTable
+        {
+            get
+            {
+                return Table;
+            }
+            set
+            {
+                Table = value;
+            }
+        }
+
+    }
+}
